@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./../Dashboard/Dashboard.css";
-import {Switch, Route} from 'react-router-dom'
+import { Switch, Route } from "react-router-dom";
 
 export default class Wizard extends Component {
   constructor(props) {
@@ -13,8 +13,9 @@ export default class Wizard extends Component {
       zip: 0,
       mortgage: 0,
       rent: 0,
-      img: '',
+      img: "",
       step: 2,
+      recommend: 0
     };
   }
 
@@ -34,7 +35,7 @@ export default class Wizard extends Component {
       zip: 0,
       mortgage: 0,
       rent: 0,
-      img: ''
+      img: ""
     });
     window.location = "/";
   };
@@ -49,19 +50,32 @@ export default class Wizard extends Component {
       zip: 0,
       mortgage: 0,
       rent: 0,
-      img: ''
+      img: ""
     });
-  }
+  };
 
   goNextStep = () => {
-    let {step} = this.state
-    window.location = `/#/wizard/step${step}`
-    let newStep = step++
-    this.setState({step: newStep});
-  }
+    let { step } = this.state;
+    window.location = `/#/wizard/step${step}`;
+    this.setState({ step: 3 });
+  };
+
+  goBack = () => {
+    this.props.history.goBack();
+  };
 
   render() {
-    const { name, address, city, state, zip, step } = this.state;
+    let {
+      name,
+      address,
+      city,
+      state,
+      zip,
+      img,
+      mortgage,
+      rent,
+      recommend
+    } = this.state;
     return (
       <div className="Wizard-Container">
         <nav className="Dashboard-Header">
@@ -72,56 +86,148 @@ export default class Wizard extends Component {
             </button>
           </div>
         </nav>
-          <div className="Wizard-Form">
-          <div>
-            <h3>Property Name</h3>
-            <input
-              value={name}
-              placeholder={name}
-              name="name"
-              onChange={this.handleChange}
-            />
-          </div>
-          <div>
-            <h3>Address</h3>
-            <input
-              value={address}
-              name="address"
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className="Form-Bottom">
-            <div>
-              <h3>City</h3>
-              <input
-                className="Short-Form"
-                value={city}
-                name="city"
-                onChange={this.handleChange}
-              />
-            </div>
-            <div>
-              <h3>State</h3>
-              <input
-                className="Short-Form"
-                value={state}
-                name="state"
-                onChange={this.handleChange}
-              />
-            </div>
-            <div>
-              <h3>Zip</h3>
-              <input value={zip} name="zip" onChange={this.handleChange} />
-            </div>
-          </div>
-        </div>
-        <div className="Wizard-Bottom">
-          <p />
-          <button id="addBtn" onClick={this.goNextStep}>
-            Next Step
-          </button>
-        </div>
 
+        <Switch>
+          <Route
+            exact
+            path="/wizard"
+            render={props => {
+              return (
+                <div>
+                  <div className="Wizard-Form">
+                    <div>
+                      <h3>Property Name</h3>
+                      <input
+                        value={name}
+                        placeholder={name}
+                        name="name"
+                        onChange={this.handleChange}
+                      />
+                    </div>
+                    <div>
+                      <h3>Address</h3>
+                      <input
+                        value={address}
+                        name="address"
+                        onChange={this.handleChange}
+                      />
+                    </div>
+                    <div className="Form-Bottom">
+                      <div>
+                        <h3>City</h3>
+                        <input
+                          className="Short-Form"
+                          value={city}
+                          name="city"
+                          onChange={this.handleChange}
+                        />
+                      </div>
+                      <div>
+                        <h3>State</h3>
+                        <input
+                          className="Short-Form"
+                          value={state}
+                          name="state"
+                          onChange={this.handleChange}
+                        />
+                      </div>
+                      <div>
+                        <h3>Zip</h3>
+                        <input
+                          value={zip}
+                          name="zip"
+                          onChange={this.handleChange}
+                        />
+                        <p></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="Wizard-Bottom">
+            
+                    <button id="addBtn" onClick={this.goNextStep}>
+                      Next Step
+                    </button>
+                  </div>
+                </div>
+              );
+            }}
+          />
+          <Route
+            exact
+            path="/wizard/step2"
+            render={props => {
+              return (
+                <div>
+                  <div className="Wizard-Form">
+                    <div>
+                      <h3>Image URL</h3>
+                      <input
+                        value={img}
+                        placeholder={img}
+                        name="img"
+                        onChange={this.handleChange}
+                      />
+                    </div>
+                    <br />
+                    <br />
+                  </div>
+                  <div className="Wizard-Bottom">
+                    <p />
+                    <button id="addBtn" onClick={this.goBack}>
+                      Previous Step
+                    </button>
+                    <button id="addBtn" onClick={this.goNextStep}>
+                      Next Step
+                    </button>
+                  </div>
+                </div>
+              );
+            }}
+          />
+          <Route
+            exact
+            path="/wizard/step3"
+            render={props => {
+              return (
+                <div>
+                  <div className="Wizard-Form">
+                    <div>
+                      <h4>Recommended Rent: ${recommend}</h4>
+                      <h3>Monthly Mortgage Amount</h3>
+                      <input
+                        type="number"
+                        value={mortgage}
+                        placeholder={mortgage}
+                        name="mortgage"
+                        onChange={this.recommended}
+                      />
+                    </div>
+                    <h3>Desired Monthly Rent</h3>
+                    <input
+                      value={rent}
+                      type="number"
+                      placeholder={rent}
+                      name="rent"
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                  <br />
+                  <br />
+
+                  <div className="Wizard-Bottom">
+                    <p />
+                    <button id="addBtn" onClick={this.goBack}>
+                      Previous Step
+                    </button>
+                    <button id="addBtn" onClick={this.handleSubmit}>
+                      Continue
+                    </button>
+                  </div>
+                </div>
+              );
+            }}
+          />
+        </Switch>
       </div>
     );
   }

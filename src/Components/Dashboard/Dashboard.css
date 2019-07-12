@@ -77,3 +77,14 @@ input {
 .Short-Form {
   width: 90%;
 }
+
+.Wizard-Bottom {
+  display: flex;
+  height: 100%;
+  width: 90%;
+  justify-content: space-around;
+}
+
+h4 {
+  text-align: center
+}
