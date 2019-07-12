@@ -5,7 +5,7 @@ const app = express();
 const PORT = 4000;
 const ctrl = require("./controller");
 const massive = require("massive");
-const { CONNECTION_STRING, SESSION_SECRET } = process.env;
+const { CONNECTION_STRING} = process.env;
 
 //MIDDLEWARE
 app.use(express.json());
@@ -15,17 +15,10 @@ massive(CONNECTION_STRING).then(db => {
   console.log("db connected");
 });
 
-// app.use(
-//   session({
-//     resave: true,
-//     saveUninitialized: false,
-//     secret: SESSION_SECRET
-//   })
-// );
-
 //ENDPOINTS
 app.get("/api/houses", ctrl.getAll);
-
+app.delete('/api/houses/:id', ctrl.delete)
+app.post("/api/houses", ctrl.add);
 
 //LISTENING
 app.listen(PORT, console.log(`Listening from Port ${PORT}`));
