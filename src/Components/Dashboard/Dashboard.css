@@ -1,0 +1,79 @@
+.Dashboard-Container {
+  width: 55%;
+  background: #e5f4ec;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+#reset {
+  background: #fec2c2;
+  border: none;
+  width: 100px;
+  height: 35px;
+  font-size: 15pt;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 30pt;
+  font-weight: normal;
+  position: relative;
+  margin-top: -2px;
+}
+
+hr {
+  width: 100%;
+}
+
+.Dashboard-Header {
+  display: flex;
+  justify-content: space-between;
+  vertical-align: top;
+  height: 60px;
+}
+
+#addBtn {
+  background: #8aea92;
+  border: none;
+  width: 250px;
+  height: 35px;
+  font-size: 15pt;
+  font-weight: bold;
+}
+
+#cancel {
+  background: #fec2c2;
+}
+
+.Wizard-Form {
+  text-align: left;
+  width: 80%;
+  margin: 0 auto;
+}
+
+input {
+  width: 100%;
+  font-size: 14pt;
+}
+
+.Form-Bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.Wizard-Container {
+  width: 45%;
+  background: #e5f4ec;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  height: 90vh;
+}
+
+.Short-Form {
+  width: 90%;
+}
