@@ -40,18 +40,8 @@ export default class Wizard extends Component {
     window.location = "/";
   };
 
-  handleReset = e => {
-    e.preventDefault();
-    this.setState({
-      name: "",
-      address: "",
-      city: "",
-      state: "",
-      zip: 0,
-      mortgage: 0,
-      rent: 0,
-      img: ""
-    });
+  handleReset = () => {
+    window.location = "././";
   };
 
   goNextStep = () => {
@@ -138,12 +128,11 @@ export default class Wizard extends Component {
                           name="zip"
                           onChange={this.handleChange}
                         />
-                        <p></p>
+                        <p />
                       </div>
                     </div>
                   </div>
                   <div className="Wizard-Bottom">
-            
                     <button id="addBtn" onClick={this.goNextStep}>
                       Next Step
                     </button>
